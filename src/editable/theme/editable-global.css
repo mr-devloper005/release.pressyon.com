@@ -1,6 +1,6 @@
 /* Fully editable publication theme. Keep data and route logic outside this file. */
 :root {
-  --editorial-red: var(--slot4-accent-fill);
+  --editorial-red: var(--slot4-accent);
   --editorial-ink: var(--slot4-page-text);
   --editorial-paper: var(--slot4-surface-bg);
 }
@@ -10,7 +10,10 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--slot4-page-bg) !important;
   color: var(--slot4-page-text) !important;
-  background-image: none !important;
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(121,44,162,.08), transparent 28rem),
+    radial-gradient(circle at 88% 30%, rgba(224,84,84,.1), transparent 30rem),
+    var(--slot4-body-gradient) !important;
   font-feature-settings: "kern", "liga", "clig", "calt";
 }
 
@@ -26,8 +29,8 @@ body {
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #ebe7e1; }
-::-webkit-scrollbar-thumb { background: #171717; border: 2px solid #ebe7e1; }
+::-webkit-scrollbar-track { background: #f1eff9; }
+::-webkit-scrollbar-thumb { background: #443199; border: 2px solid #f1eff9; border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--editorial-red); }
 
 .editorial-brand,
@@ -79,7 +82,34 @@ body {
 .article-content li { margin: .5em 0; }
 .article-content img { width: 100%; margin: 2em 0; }
 
-input, textarea, select, button { border-radius: 0 !important; }
+.press-device {
+  position: relative;
+  overflow: hidden;
+  border: 10px solid #2d3038;
+  border-radius: 2rem;
+  background: #fff;
+  box-shadow: 0 34px 70px rgba(7, 11, 34, .35);
+}
+
+.press-device::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  z-index: 3;
+  width: 34%;
+  height: 18px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #10131b;
+}
+
+.press-gradient-text {
+  background: linear-gradient(90deg, #443199, #c13383, #e05454);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 @media (max-width: 640px) {
   .article-content { font-size: 1.05rem; line-height: 1.72; }

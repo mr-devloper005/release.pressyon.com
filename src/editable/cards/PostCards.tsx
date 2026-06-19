@@ -96,3 +96,47 @@ export function ArticleListCard({ post, href, index }: { post: SitePost; href: s
     </Link>
   )
 }
+
+export function HorizontalPostCard({ post, href, index }: { post: SitePost; href: string; index: number }) {
+  return (
+    <Link href={href} className="group grid overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,11,34,.12)] sm:grid-cols-[220px_1fr]">
+      <div className="relative min-h-48 bg-[var(--slot4-media-bg)]">
+        <img src={getEditablePostImage(post)} alt={post.title} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+      </div>
+      <div className="p-6">
+        <div className="flex items-center justify-between gap-4 text-[10px] font-black uppercase tracking-[.18em] text-[#792ca2]">
+          <span>{getEditableCategory(post)}</span><span>{String(index + 1).padStart(2, '0')}</span>
+        </div>
+        <h3 className="mt-3 line-clamp-2 text-2xl font-black leading-tight tracking-[-.04em] group-hover:text-[#792ca2]">{post.title}</h3>
+        <p className="mt-3 line-clamp-3 text-sm leading-6 text-[var(--slot4-muted-text)]">{getEditableExcerpt(post, 150)}</p>
+        <span className="mt-5 inline-flex items-center gap-2 text-sm font-black">Read more <ArrowRight className="h-4 w-4" /></span>
+      </div>
+    </Link>
+  )
+}
+
+export function ImageFirstCard({ post, href, index }: { post: SitePost; href: string; index: number }) {
+  return (
+    <Link href={href} className="group block overflow-hidden rounded-3xl bg-white shadow-[0_12px_35px_rgba(7,11,34,.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(7,11,34,.16)]">
+      <div className={index % 2 === 0 ? 'aspect-[4/3] overflow-hidden' : 'aspect-[16/10] overflow-hidden'}>
+        <img src={getEditablePostImage(post)} alt={post.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+      </div>
+      <div className="p-5">
+        <p className="text-[10px] font-black uppercase tracking-[.18em] text-[#c13383]">{getEditableCategory(post)}</p>
+        <h3 className="mt-3 line-clamp-2 text-xl font-black leading-tight tracking-[-.035em]">{post.title}</h3>
+      </div>
+    </Link>
+  )
+}
+
+export function ListEditorialCard({ post, href, index }: { post: SitePost; href: string; index: number }) {
+  return (
+    <Link href={href} className="group grid grid-cols-[56px_1fr] gap-4 border-t border-black/10 py-5">
+      <span className="editorial-serif text-3xl font-black italic text-[#c13383]">{String(index + 1).padStart(2, '0')}</span>
+      <div>
+        <p className="text-[10px] font-black uppercase tracking-[.18em] text-black/40">{getEditableCategory(post)}</p>
+        <h3 className="mt-2 line-clamp-3 text-xl font-black leading-tight tracking-[-.035em] group-hover:text-[#792ca2]">{post.title}</h3>
+      </div>
+    </Link>
+  )
+}
